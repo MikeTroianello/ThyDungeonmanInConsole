@@ -18,15 +18,14 @@ let scroll;
 //game will determine if you can use the other functions
 let game;
 
-//firstTime will prevent the artwork from getting cleared
-let firstTime;
 //ascii artwork
 
 const artwork = `    Thy Dungeonman \n\n/\\        /\\     /\\   \n| |/----\\| |    | | \n \\_------_/     | |    \n  / o  o \\      | |   \n  /  ||  \\   o__|_|__o \n  / ---- \\    \\_____/ \n  /\\/\\/\\/\\      | | \n                OOO \n`;
 
-thyDungeonman();
+// thyDungeonman();
 
 function thyDungeonman() {
+  if (game) cheater(); //CHANGE THIS
   console.clear();
   ns = 0;
   trinket = false;
@@ -37,32 +36,32 @@ function thyDungeonman() {
   flask = 0;
   scroll = false;
   console.log(`%c${artwork}`, 'color: #00cc00; font-size: 20px');
-  output(`\nYOU ARE THY DUNGEONMAN!`);
-  mainDungeon();
+  console.log(`%cYOU ARE THY DUNGEONMAN!`, 'color: #00cc00; font-size: 20px');
+  console.log(
+    '%cYe find yeself in yon dungeon. Ye see a SCROLL. Behind ye scroll is a FLASK. Obvious exits are north(), south() and dennis().',
+    'color: #00cc00; font-size: 19px'
+  );
 }
 
 //MOVEMENT COMMANDS
 
 function north() {
-  if (!game) return cheater();
   if (ns > 0 || d) return cannotstGo();
   if (ns < 0) output('You go north()');
   ns++;
-  if (ns == 1) return northDungeon();
-  else return mainDungeon();
+  if (ns == 1) return northDungeon(true);
+  else return mainDungeon(true);
 }
 
 function south() {
-  if (!game) return cheater();
   if (ns < 0 || d) return cannotstGo();
   if (ns > 0) output('You go south() back through yon corridor.');
   ns--;
-  if (ns < 0) return southDungeon();
-  else return mainDungeon();
+  if (ns < 0) return southDungeon(true);
+  else return mainDungeon(true);
 }
 
 function dennis() {
-  if (!game) return cheater();
   if (ns !== 0) return notComputeth();
   d = true;
   output(
@@ -71,7 +70,6 @@ function dennis() {
 }
 
 function notDennis() {
-  if (!game) return cheater();
   if (!d) return notComputeth();
   d = false;
   output('You go NOT DENNIS');
@@ -80,77 +78,96 @@ function notDennis() {
 
 //MAIN DUNGEON ROOM COMMANDS
 
-function mainDungeon() {
-  if (!game) return cheater();
+function mainDungeon(honesty) {
+  if (!honesty) return theCheat();
   output(
-    'Ye find yeself in yon dungeon. Ye see a SCROLL. Behind ye scroll is a FLASK. Obvious exits are north(), south() and dennis().'
+    'Ye find yeself in yon dungeon. Ye see a SCROLL. Behind ye scroll is a FLASK. Obvious exits are north(), south() and dennis().',
+    0
   );
 }
 
 function lookScroll() {
+  if (ns !== 0) notComputeth();
   if (!scroll) {
-    output("Parchment, definitely parchment. I'd recognize it anywhere.");
+    output("Parchment, definitely parchment. I'd recognize it anywhere.", 0);
   } else {
-    output('Ye seeth nothing wheretofore it went ZAP.');
+    output('Ye seeth nothing wheretofore it went ZAP.', 0);
   }
 }
 
 function getScroll() {
+  if (ns !== 0) notComputeth();
   if (!scroll) {
     score += 2;
     output(
-      'Ye takes the scroll and reads of it. It doth say: BEWARE, READER OF THE SCROLL, DANGER AWAITS TO THE- The SCROLL disappears in thy hands with ye olde ZAP!'
+      'Ye takes the scroll and reads of it. It doth say: BEWARE, READER OF THE SCROLL, DANGER AWAITS TO THE- The SCROLL disappears in thy hands with ye olde ZAP!',
+      0
     );
   } else {
     score--;
-    output('Ye doth suffer from memory loss. YE SCROLL is no more. Honestly.');
+    output(
+      'Ye doth suffer from memory loss. YE SCROLL is no more. Honestly.',
+      0
+    );
   }
 }
 
 function lookFlask() {
-  output('Looks like you could quaff some serious mead out of that thing.');
+  if (ns !== 0) notComputeth();
+  output('Looks like you could quaff some serious mead out of that thing.', 0);
 }
 
 function getFlask() {
+  if (ns !== 0) notComputeth();
   if (flask < 2) {
     flask++;
     score++;
     output(
-      'Ye cannot get the FLASK. It is firmly bolted to a wall which is bolted to the rest of the dungeon which is probably bolted to a castle. Never you mind.'
+      'Ye cannot get the FLASK. It is firmly bolted to a wall which is bolted to the rest of the dungeon which is probably bolted to a castle. Never you mind.',
+      0
     );
   } else {
     score -= 1000;
     output(
-      `Okay, okay. You unbolt yon FLASK and hold it aloft. A great shaking begins. The dungeon ceiling collapses down on you, crushing you in twain. Apparently, this was a load-bearing FLASK. Your score was: ${score} Play again? [yes()/no()]`
+      `Okay, okay. You unbolt yon FLASK and hold it aloft. A great shaking begins. The dungeon ceiling collapses down on you, crushing you in twain. Apparently, this was a load-bearing FLASK. Your score was: ${score} Play again? [yes()/no()]`,
+      0
     );
   }
 }
 
 //NORTH DUNGEON ROOM COMMANDS
 
-function northDungeon() {
+function northDungeon(honesty) {
+  if (!honesty) return theCheat();
   output(
-    'You go NORTH through yon corridor. You arrive at parapets. Ye see a ROPE. Obvious exits are south().'
+    'You go NORTH through yon corridor. You arrive at parapets. Ye see a ROPE. Obvious exits are south().',
+    1
   );
 }
 
 function lookParapets() {
-  output("Well, they're parapets. This much we know for sure.");
+  if (ns < 1) notComputeth();
+  output("Well, they're parapets. This much we know for sure.", 1);
 }
 
 function lookRope() {
-  output("It looks okay. You've seen better.");
+  if (ns < 1) notComputeth();
+  output("It looks okay. You've seen better.", 1);
 }
 
 function getRope() {
+  if (ns < 1) notComputeth();
   output(
-    `You attempt to take ye ROPE but alas it is enchanted! It glows a mustard red and smells like a public privy. The ROPE wraps round your neck and hangs you from parapets. With your last breath, you wonder what parapets are. GAME OVER. Your score was: ${score}. Play again? [yes()/no()]`
+    `You attempt to take ye ROPE but alas it is enchanted! It glows a mustard red and smells like a public privy. The ROPE wraps round your neck and hangs you from parapets. With your last breath, you wonder what parapets are. GAME OVER. Your score was: ${score}. Play again? [yes()/no()]`,
+    1
   );
+  game = false;
 }
 
 //SOUTH DUNGEON ROOM COMMANDS
 
-function southDungeon() {
+function southDungeon(honesty) {
+  if (!honesty) return theCheat();
   output(
     "You head south to an enbankment. Or maybe a chasm. You can't decide which. Anyway, ye spies a TRINKET. Obvious exits are north()."
   );
@@ -158,9 +175,9 @@ function southDungeon() {
 
 function lookTrinket() {
   if (!trinket) {
-    output('Quit looking! Just get it already.');
+    output('Quit looking! Just get it already.', -1);
   } else {
-    output('Just a bulge in thou pouchel at thist point.');
+    output('Just a bulge in thou pouchel at thist point.', -1);
   }
 }
 
@@ -168,12 +185,14 @@ function getTrinket() {
   trinketCount++;
   if (!trinket) {
     score += 2;
+    trinket = true;
     output(
-      'Ye getsts yon TRINKET and discover it to be a bauble. You rejoice at your good fortune. You shove the TRINKET in your pouchel. It kinda hurts.'
+      'Ye getsts yon TRINKET and discover it to be a bauble. You rejoice at your good fortune. You shove the TRINKET in your pouchel. It kinda hurts.',
+      -1
     );
   } else {
     score--;
-    output('Sigh. The trinket is in thou pouchel. Recallest thou?');
+    output('Sigh. The trinket is in thou pouchel. Recallest thou?', -1);
   }
 }
 
@@ -181,23 +200,29 @@ function getTrinket() {
 
 function talk() {
   output(
-    'You engage Dennis in leisurely discussion. Ye learns that his jimberjam was purchased on sale at a discount market and that he enjoys pacing about nervously. You become bored and begin thinking about parapets.'
+    'You engage Dennis in leisurely discussion. Ye learns that his jimberjam was purchased on sale at a discount market and that he enjoys pacing about nervously. You become bored and begin thinking about parapets.',
+    'd'
   );
 }
 
 function lookDennis() {
-  output('That jimberjam really makes the outfit.');
+  output('That jimberjam really makes the outfit.', 'd');
 }
 function lookJimberjam() {
-  output('Man, that art a nice jimberjam.');
+  output('Man, that art a nice jimberjam.', 'd');
 }
 function giveTrinket() {
   if (!trinket) {
-    output("Thou don'tst have a trinket to give. Go back to your tiny life.");
+    output(
+      "Thou don'tst have a trinket to give. Go back to your tiny life.",
+      'd'
+    );
   } else {
     output(
-      `A novel idea! You givst the TRINKET to Dennis and he happily agrees to tell you what parapets are. With this new knowledge, ye escapes from yon dungeon in order to search for new dungeons and to remain... THY DUNGEONMAN!! You hath won! Congraturation!! Your score was: ${score}`
+      `A novel idea! You givst the TRINKET to Dennis and he happily agrees to tell you what parapets are. With this new knowledge, ye escapes from yon dungeon in order to search for new dungeons and to remain... THY DUNGEONMAN!! You hath won! Congraturation!! Your score was: ${score}`,
+      'd'
     );
+    game = false;
   }
 }
 
@@ -210,30 +235,30 @@ function notComputeth() {
 function cannotstGo() {
   // if (!theCheat) return cheater();
   output('Thou cannotst go there. Who do you think thou art? A magistrate?!');
-  // err = 0;
 }
 
 function theCheat() {
   output('Thou arst not a The Cheat, play fair!');
 }
 
-function cheater() {
-  output('You have net yet started the game! first enter thyDungeonman()');
+function restart() {
+  output('Dost ye want to restart? [yes()/no()]');
 }
 
 //RESTARTING
 
 function yes() {
+  if (game) return notComputeth();
   return thyDungeonman();
 }
 
 function no() {
-  output('Doest what thou wilt');
+  if (game) return notComputeth();
+  console.log('%Doest what thou wilt', 'color: #00cc00; font-size: 19px');
 }
 
 //JOKE COMMANDS
 function smell() {
-  if (!game) return cheater();
   output('You smell a Wumpus.');
 }
 
@@ -242,30 +267,20 @@ function sniff() {
 }
 
 function dance() {
-  if (!game) return cheater();
   output('Thou shaketh it a little, and it feeleth all right.');
 }
 
 function die() {
-  if (!game) return cheater();
-  game = false;
   output(
     `That wasn't very smart. Your score was: ${score -
       100}. Play again? [yes()/no()]`
   );
+  game = false;
 }
 
 function getDagger() {
-  if (!game) return cheater();
   output('Yeah, okay.');
   score += 25;
-}
-
-//THE OUTPUT FUNCTION WHICH FORMATS THE output TEXT
-
-function output(message) {
-  // console.clear();
-  console.log(`%c${message}`, 'color: #00cc00; font-size: 19px');
 }
 
 //LOOK AND HELP
@@ -278,13 +293,14 @@ function look() {
       'Ye thou now be at parapets. Ye see a ROPE. Obvious exits are south()'
     );
   } else if (ns < 0) {
-    lookSouth();
+    lookSouth(true);
   } else {
     mainDungeon();
   }
 }
 
-function lookSouth() {
+function lookSouth(honesty) {
+  if (!honesty) return theCheat();
   if (!trinket) {
     output(
       'Ye stand yeself close to a yet-unnamed escarpment. Nonetheless, ye spies a TRINKET. Obvious exits are NORTH.'
@@ -295,7 +311,7 @@ function lookSouth() {
     );
   } else {
     output(
-      'Ye stand high above a canyon-like depression. Obvious exits are NORTH."'
+      'Ye stand high above a canyon-like depression. Obvious exits are NORTH.'
     );
   }
 }
@@ -306,4 +322,25 @@ function help() {
 
 function helpeth() {
   look();
+}
+
+//THE OUTPUT FUNCTION WHICH FORMATS THE output TEXT
+
+function output(message, room) {
+  console.clear();
+  if (!game) {
+    message = 'You have net yet started the game! first enter thyDungeonman()';
+  } else if (!room) {
+  } else if (room == 'd' && !d) {
+    return notComputeth();
+  } else if (room != 'd' && room != ns) {
+    return notComputeth();
+  }
+
+  console.log(`%c${message}`, 'color: #00cc00; font-size: 19px');
+}
+
+function quit() {
+  output('coward');
+  game = false;
 }
