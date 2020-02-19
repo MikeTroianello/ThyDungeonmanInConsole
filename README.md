@@ -1,4 +1,4 @@
-# ThyDungeonmanInConsole V1.0.0
+# Thy Dungeonman In Console V1.0.0
 
 This is a port of the 2004 Homestar Runner text-based RPG Thy Dungeonman. It was built to be run inside the developer's console.
 
