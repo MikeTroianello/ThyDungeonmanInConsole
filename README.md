@@ -1,4 +1,4 @@
-# ThyDungeonmanInConsole
+# ThyDungeonmanInConsole V1.0.0
 
 This is a port of the 2004 Homestar Runner text-based RPG Thy Dungeonman. It was built to be run inside the developer's console.
 
@@ -29,7 +29,7 @@ Right click and choose "inspect" for Chrome and "inspect element" for Firefox
 
 Find the tabs inside the tools, and click the 'Console' tab.
 
-If you are using a different browser, just search "Open developer console
+\*If you are using a different browser, just search "Open developer console"
 
 Once you are in the console, enter the command:
 
@@ -40,3 +40,5 @@ thyDungeonman()
 ## Acknowledgments
 
 Thanks to the Brothers Chaps for all their dumb animal characters.
+
+Please contact me if there are any errors or sugestions for improvement.
