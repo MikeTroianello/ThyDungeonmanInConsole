@@ -12,7 +12,26 @@ getFlask()
 
 ## Getting Started
 
-Play the game by opening the developer's console in your browser, and entering the command:
+Play the game by opening the developer's console in your browser
+
+For PC:
+
+```
+F12 for most browsers
+(Control+Shift+C for Chrome)
+```
+
+For Mac:
+
+```
+Right click and choose "inspect" for Chrome and "inspect element" for Firefox
+```
+
+Find the tabs inside the tools, and click the 'Console' tab.
+
+If you are using a different browser, just search "Open developer console
+
+Once you are in the console, enter the command:
 
 ```
 thyDungeonman()

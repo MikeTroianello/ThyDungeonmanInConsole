@@ -2,7 +2,6 @@
 console.clear();
 //ns is north/south +1 is going north, -1 is going south
 let ns;
-let ew;
 
 let score;
 //d is DENNIS
@@ -24,10 +23,10 @@ const artwork = `    Thy Dungeonman \n\n/\\        /\\     /\\   \n| |/----\\| |
 
 let themeSong = new Audio('./thydungeonman_theme.mp3');
 
-// thyDungeonman();
+// thyDungeonman()
 
 function thyDungeonman() {
-  if (game) return theCheat();
+  if (game) return playing();
   playTheme();
   console.clear();
   ns = 0;
@@ -246,6 +245,10 @@ function cannotstGo() {
 
 function theCheat() {
   output('Thou arst not a The Cheat, play fair!');
+}
+
+function playing() {
+  output('Thou art already playing!');
 }
 
 function restart() {
