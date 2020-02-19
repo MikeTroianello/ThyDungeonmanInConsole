@@ -28,9 +28,7 @@ function thyDungeonman() {
   game = true;
   // console.log();
   console.log(`%c${artwork}`, 'color: #00cc00; font-size: 20px');
-  console.log(
-    'Ye find yeself in yon dungeon. Ye see a SCROLL. Behind ye scroll is a FLASK. Obvious exits are NORTH, SOUTH and DENNIS.'
-  );
+  mainDungeon();
 }
 
 //MOVEMENT COMMANDS
@@ -47,9 +45,6 @@ function south() {
   if (!game) return cheater();
   if (ns < 0 || d) return notComputeth();
   ns--;
-  console.log(
-    "You head south to an enbankment. Or maybe a chasm. You can't decide which. Anyway, ye spies a TRINKET. Obvious exits are NORTH."
-  );
 }
 
 function dennis() {
@@ -78,9 +73,22 @@ function helpeth() {
 
 //MAIN DUNGEON ROOM COMMANDS
 
+function mainDungeon() {
+  if (!game) return cheater();
+  console.log(
+    'Ye find yeself in yon dungeon. Ye see a SCROLL. Behind ye scroll is a FLASK. Obvious exits are NORTH, SOUTH and DENNIS.'
+  );
+}
+
 //NORTH DUNGEON ROOM COMMANDS
 
 //SOUTH DUNGEON ROOM COMMANDS
+
+function southDungeon() {
+  console.log(
+    "You head south to an enbankment. Or maybe a chasm. You can't decide which. Anyway, ye spies a TRINKET. Obvious exits are NORTH."
+  );
+}
 
 //DENNIS COMMANDS
 
