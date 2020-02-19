@@ -36,15 +36,16 @@ function thyDungeonman() {
 function north() {
   if (!game) return cheater();
   ns++;
-  console.log(
-    'You go NORTH through yon corridor. You arrive at parapets. Ye see a ROPE. Obvious exits are SOUTH.'
-  );
+  if (ns == 0) return northDungeon();
+  else return mainDungeon();
 }
 
 function south() {
   if (!game) return cheater();
   if (ns < 0 || d) return notComputeth();
   ns--;
+  if (ns < 0) return southDungeon();
+  else return mainDungeon();
 }
 
 function dennis() {
@@ -81,6 +82,12 @@ function mainDungeon() {
 }
 
 //NORTH DUNGEON ROOM COMMANDS
+
+function northDungeon() {
+  console.log(
+    'You go NORTH through yon corridor. You arrive at parapets. Ye see a ROPE. Obvious exits are SOUTH.'
+  );
+}
 
 //SOUTH DUNGEON ROOM COMMANDS
 
