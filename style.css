@@ -1,0 +1,9 @@
+html {
+  background: black;
+  color: #00cc00;
+  font-size: 1.1em;
+}
+
+.instructions {
+  margin: 3vh 0;
+}
