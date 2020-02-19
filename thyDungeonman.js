@@ -22,11 +22,14 @@ let game;
 
 const artwork = `    Thy Dungeonman \n\n/\\        /\\     /\\   \n| |/----\\| |    | | \n \\_------_/     | |    \n  / o  o \\      | |   \n  /  ||  \\   o__|_|__o \n  / ---- \\    \\_____/ \n  /\\/\\/\\/\\      | | \n                OOO \n`;
 
+let themeSong = new Audio('./thydungeonman_theme.mp3');
+
 // thyDungeonman();
 
 function thyDungeonman() {
-  if (game) cheater(); //CHANGE THIS
+  if (game) return theCheat(); //CHANGE THIS
   console.clear();
+  themeSong.play();
   ns = 0;
   trinket = false;
   trinketCount = 0;
@@ -233,7 +236,6 @@ function notComputeth() {
 }
 
 function cannotstGo() {
-  // if (!theCheat) return cheater();
   output('Thou cannotst go there. Who do you think thou art? A magistrate?!');
 }
 
