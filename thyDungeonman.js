@@ -1,5 +1,5 @@
 'use strict';
-
+console.clear();
 //ns is north/south +1 is going north, -1 is going south
 let ns;
 let ew;
@@ -27,9 +27,9 @@ let themeSong = new Audio('./thydungeonman_theme.mp3');
 // thyDungeonman();
 
 function thyDungeonman() {
-  if (game) return theCheat(); //CHANGE THIS
+  if (game) return theCheat();
+  playTheme();
   console.clear();
-  themeSong.play();
   ns = 0;
   trinket = false;
   trinketCount = 0;
@@ -44,6 +44,11 @@ function thyDungeonman() {
     '%cYe find yeself in yon dungeon. Ye see a SCROLL. Behind ye scroll is a FLASK. Obvious exits are north(), south() and dennis().',
     'color: #00cc00; font-size: 19px'
   );
+}
+
+function playTheme() {
+  themeSong.play();
+  console.clear();
 }
 
 //MOVEMENT COMMANDS
