@@ -4,6 +4,11 @@ html {
   font-size: 1.1em;
 }
 
+footer {
+  position: absolute;
+  bottom: 0;
+}
+
 .instructions {
   margin: 3vh 0;
 }
