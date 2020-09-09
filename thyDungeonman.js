@@ -264,7 +264,8 @@ function yes() {
 
 function no() {
   if (game) return notComputeth();
-  console.log('%Doest what thou wilt', 'color: #00cc00; font-size: 19px');
+  console.log('%cDoest what thou wilt', 'color: #00cc00; font-size: 19px');
+  // output('Doest what thou wilt');
 }
 
 //JOKE COMMANDS
@@ -282,8 +283,9 @@ function dance() {
 
 function die() {
   output(
-    `That wasn't very smart. Your score was: ${score -
-      100}. Play again? [yes()/no()]`
+    `That wasn't very smart. Your score was: ${
+      score - 100
+    }. Play again? [yes()/no()]`
   );
   game = false;
 }
